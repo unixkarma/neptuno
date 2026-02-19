@@ -60,7 +60,14 @@
             String password = request.getParameter("password");
             
             if(usuario != null && password != null && usuario.equals(user)
-            && password==)
+            && password.equals(pass)){
+                session.setAttribute("usuario", usuario);
+                response.sendRedirect("ClientesControlador?accion=listar");
+        
+            }
+            else{
+                response.sendRedirect("index.jsp?error=1");
+            }
         %>
     </body>
 
