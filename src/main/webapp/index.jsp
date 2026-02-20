@@ -53,22 +53,84 @@
     </head>
     <body>
         <%
-            String user ="admin";
-            String pass="1234";
-            
+            String user = "admin";
+            String pass = "1234";
+
             String usuario = request.getParameter("usuario");
             String password = request.getParameter("password");
-            
-            if(usuario != null && password != null && usuario.equals(user)
-            && password.equals(pass)){
-                session.setAttribute("usuario", usuario);
+
+            // Si ya está autenticado, ir a clientes
+            if(session.getAttribute("usuario") != null){
                 response.sendRedirect("ClientesControlador?accion=listar");
-        
+                return;
             }
-            else{
-                response.sendRedirect("index.jsp?error=1");
+
+            // Si viene del formulario de login
+            if(usuario != null && password != null){
+                if(usuario.equals(user) && password.equals(pass)){
+                    session.setAttribute("usuario", usuario);
+                    response.sendRedirect("ClientesControlador?accion=listar");
+                    return;
+                } else {
+                    // Credenciales incorrectas
+                    request.setAttribute("error", "Usuario o contraseña incorrectos");
+                }
             }
         %>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="main-card">
+                        <div class="text-center mb-4">
+                            <i class="bi bi-shield-lock-fill" style="font-size: 4rem; color: #667eea;"></i>
+                            <h1 class="mt-3">Sistema de Clientes</h1>
+                            <p class="text-muted">Ingrese sus credenciales</p>
+                        </div>
+
+                        <% if(request.getAttribute("error") != null){ %>
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <%= request.getAttribute("error") %>
+                            </div>
+                        <% } %>
+
+                        <% if(request.getParameter("error") != null){ %>
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                Usuario o contraseña incorrectos
+                            </div>
+                        <% } %>
+
+                        <form action="index.jsp" method="post">
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">
+                                    <i class="bi bi-person-fill me-2"></i>Usuario
+                                </label>
+                                <input type="text" class="form-control" id="usuario"
+                                       name="usuario" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="bi bi-lock-fill me-2"></i>Contraseña
+                                </label>
+                                <input type="password" class="form-control" id="password"
+                                       name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-lg">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
+                            </button>
+                        </form>
+
+                        <div class="mt-4 text-center text-muted">
+                            <small>Usuario: admin | Contraseña: 1234</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 
 </html>

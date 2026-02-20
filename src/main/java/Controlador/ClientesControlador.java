@@ -111,7 +111,7 @@ public class ClientesControlador extends HttpServlet {
     
     protected void editar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        String id = request.getParameter("idClientes");
+        String id = request.getParameter("idCliente");
         Clientes obj = cliDAO.buscarPorId(id);
         if(obj != null){
             request.setAttribute("clientes", obj);
