@@ -88,6 +88,7 @@
                                 <th><i class="bi bi-calendar me-1"></i>F. Contratación</th>
                                 <th><i class="bi bi-geo-alt me-1"></i>Ciudad</th>
                                 <th><i class="bi bi-telephone me-1"></i>Teléfono</th>
+                                <th><i class="bi bi-envelope me-1"></i>Email</th>
                                 <th class="text-center"><i class="bi bi-gear me-1"></i>Acciones</th>
                             </tr>
                         </thead>
@@ -101,6 +102,7 @@
                                     <td>${item.fechaContratacion}</td>
                                     <td>${item.ciudad}</td>
                                     <td><i class="bi bi-telephone-fill text-success me-1"></i>${item.telDomicilio}</td>
+                                    <td><i class="bi bi-envelope-fill text-primary me-1"></i>${item.email}</td>
                                     <td class="text-center">
                                         <a href="${pageContext.request.contextPath}/EmpleadosControlador?accion=editar&idEmpleado=${item.idEmpleado}"
                                            class="btn btn-warning btn-sm me-1" title="Editar">

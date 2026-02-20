@@ -83,6 +83,8 @@ public class EmpleadosControlador extends HttpServlet {
         obj.setPais(request.getParameter("pais"));
         obj.setTelDomicilio(request.getParameter("telDomicilio"));
         obj.setExtension(request.getParameter("extension"));
+        obj.setEmail(request.getParameter("email"));
+        obj.setPassword(request.getParameter("password"));
 
         int result = 0;
         if (obj.getIdEmpleado() == 0) {

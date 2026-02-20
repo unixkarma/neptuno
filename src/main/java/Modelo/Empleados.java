@@ -16,11 +16,13 @@ public class Empleados {
     private String pais;
     private String telDomicilio;
     private String extension;
+    private String email;
+    private String password;
 
     public Empleados() {
     }
 
-    public Empleados(int idEmpleado, String apellidos, String nombre, String cargo, String tratamiento, String fechaNacimiento, String fechaContratacion, String direccion, String ciudad, String region, String codPostal, String pais, String telDomicilio, String extension) {
+    public Empleados(int idEmpleado, String apellidos, String nombre, String cargo, String tratamiento, String fechaNacimiento, String fechaContratacion, String direccion, String ciudad, String region, String codPostal, String pais, String telDomicilio, String extension, String email, String password) {
         this.idEmpleado = idEmpleado;
         this.apellidos = apellidos;
         this.nombre = nombre;
@@ -35,6 +37,8 @@ public class Empleados {
         this.pais = pais;
         this.telDomicilio = telDomicilio;
         this.extension = extension;
+        this.email = email;
+        this.password = password;
     }
 
     public int getIdEmpleado() {
@@ -147,5 +151,21 @@ public class Empleados {
 
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

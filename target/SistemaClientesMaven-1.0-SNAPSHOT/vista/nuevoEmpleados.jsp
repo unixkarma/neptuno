@@ -150,6 +150,21 @@
                         </div>
                     </div>
 
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">
+                                <i class="bi bi-envelope text-primary me-1"></i>Email
+                            </label>
+                            <input name="email" type="email" class="form-control" value="${empleados.email}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="password" class="form-label">
+                                <i class="bi bi-lock text-danger me-1"></i>Contraseña
+                            </label>
+                            <input name="password" type="password" class="form-control" value="${empleados.password}">
+                        </div>
+                    </div>
+
                     <!-- Buttons -->
                     <div class="d-flex justify-content-between pt-3 border-top">
                         <a href="${pageContext.request.contextPath}/EmpleadosControlador?accion=listar"
