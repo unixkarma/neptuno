@@ -38,6 +38,7 @@ public class EmpleadosDAO {
                 obj.setExtension(rs.getString("extension"));
                 obj.setEmail(rs.getString("email"));
                 obj.setPassword(rs.getString("password"));
+                obj.setLogin(rs.getString("login"));
                 lista.add(obj);
             }
         } catch (Exception ex) {
@@ -58,7 +59,7 @@ public class EmpleadosDAO {
         int result = 0;
         try {
             con = Conexion.getConnection();
-            String sql = "insert into empleados values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into empleados values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1, obj.getIdEmpleado());
             ps.setString(2, obj.getApellidos());
@@ -76,6 +77,7 @@ public class EmpleadosDAO {
             ps.setString(14, obj.getExtension());
             ps.setString(15, obj.getEmail());
             ps.setString(16, obj.getPassword());
+            ps.setString(17, obj.getLogin());
             result = ps.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -96,7 +98,7 @@ public class EmpleadosDAO {
             con = Conexion.getConnection();
             String sql = "update empleados set apellidos=?, nombre=?, cargo=?, tratamiento=?, fechaNacimiento=?, "
                     + "fechaContratacion=?, direccion=?, ciudad=?, region=?, codPostal=?, pais=?, telDomicilio=?, "
-                    + "extension=?, email=?, password=? where idEmpleado=?";
+                    + "extension=?, email=?, password=?, login=? where idEmpleado=?";
             ps = con.prepareStatement(sql);
             ps.setString(1, obj.getApellidos());
             ps.setString(2, obj.getNombre());
@@ -113,7 +115,8 @@ public class EmpleadosDAO {
             ps.setString(13, obj.getExtension());
             ps.setString(14, obj.getEmail());
             ps.setString(15, obj.getPassword());
-            ps.setInt(16, obj.getIdEmpleado());
+            ps.setString(16, obj.getLogin());
+            ps.setInt(17, obj.getIdEmpleado());
             result = ps.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -155,6 +158,7 @@ public class EmpleadosDAO {
                 obj.setExtension(rs.getString("extension"));
                 obj.setEmail(rs.getString("email"));
                 obj.setPassword(rs.getString("password"));
+                obj.setLogin(rs.getString("login"));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -196,6 +200,50 @@ public class EmpleadosDAO {
                 obj.setExtension(rs.getString("extension"));
                 obj.setEmail(rs.getString("email"));
                 obj.setPassword(rs.getString("password"));
+                obj.setLogin(rs.getString("login"));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+                if (ps != null) ps.close();
+                if (rs != null) rs.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return obj;
+    }
+
+    public Empleados buscarPorLogin(String login, String password) {
+        Empleados obj = null;
+        try {
+            con = Conexion.getConnection();
+            String sql = "select * from empleados where login = ? and password = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, login);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                obj = new Empleados();
+                obj.setIdEmpleado(rs.getInt("idEmpleado"));
+                obj.setApellidos(rs.getString("apellidos"));
+                obj.setNombre(rs.getString("nombre"));
+                obj.setCargo(rs.getString("cargo"));
+                obj.setTratamiento(rs.getString("tratamiento"));
+                obj.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                obj.setFechaContratacion(rs.getString("fechaContratacion"));
+                obj.setDireccion(rs.getString("direccion"));
+                obj.setCiudad(rs.getString("ciudad"));
+                obj.setRegion(rs.getString("region"));
+                obj.setCodPostal(rs.getString("codPostal"));
+                obj.setPais(rs.getString("pais"));
+                obj.setTelDomicilio(rs.getString("telDomicilio"));
+                obj.setExtension(rs.getString("extension"));
+                obj.setEmail(rs.getString("email"));
+                obj.setPassword(rs.getString("password"));
+                obj.setLogin(rs.getString("login"));
             }
         } catch (Exception ex) {
             ex.printStackTrace();

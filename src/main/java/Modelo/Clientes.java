@@ -13,11 +13,14 @@ public class Clientes {
     private String pais;
     private String telefono;
     private String fax;
+    private String jefe;
+    private String login;
+    private String password;
 
     public Clientes() {
     }
 
-    public Clientes(String idCliente, String nombreCompania, String nombreContacto, String cargoContacto, String direccion, String ciudad, String region, String codPostal, String pais, String telefono, String fax) {
+    public Clientes(String idCliente, String nombreCompania, String nombreContacto, String cargoContacto, String direccion, String ciudad, String region, String codPostal, String pais, String telefono, String fax, String jefe, String login, String password) {
         this.idCliente = idCliente;
         this.nombreCompania = nombreCompania;
         this.nombreContacto = nombreContacto;
@@ -29,6 +32,9 @@ public class Clientes {
         this.pais = pais;
         this.telefono = telefono;
         this.fax = fax;
+        this.jefe = jefe;
+        this.login = login;
+        this.password = password;
     }
 
     public String getIdCliente() {
@@ -117,5 +123,29 @@ public class Clientes {
 
     public void setFax(String fax) {
         this.fax = fax;
+    }
+
+    public String getJefe() {
+        return jefe;
+    }
+
+    public void setJefe(String jefe) {
+        this.jefe = jefe;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

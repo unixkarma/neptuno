@@ -89,6 +89,9 @@ public class ClientesControlador extends HttpServlet {
         obj.setPais(request.getParameter("pais"));
         obj.setTelefono(request.getParameter("telefono"));
         obj.setFax(request.getParameter("fax"));
+        obj.setJefe(request.getParameter("jefe"));
+        obj.setLogin(request.getParameter("login"));
+        obj.setPassword(request.getParameter("password"));
 
         // Obtener el tipo de operación del campo hidden
         String operacion = request.getParameter("operacion");

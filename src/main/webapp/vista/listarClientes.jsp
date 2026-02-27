@@ -88,6 +88,7 @@
                                 <th><i class="bi bi-geo-alt me-1"></i>Ciudad</th>
                                 <th><i class="bi bi-flag me-1"></i>País</th>
                                 <th><i class="bi bi-telephone me-1"></i>Teléfono</th>
+                                <th><i class="bi bi-person-badge me-1"></i>Jefe</th>
                                 <th class="text-center"><i class="bi bi-gear me-1"></i>Acciones</th>
                             </tr>
                         </thead>
@@ -101,6 +102,7 @@
                                     <td>${item.ciudad}</td>
                                     <td>${item.pais}</td>
                                     <td><i class="bi bi-telephone-fill text-success me-1"></i>${item.telefono}</td>
+                                    <td>${item.jefe}</td>
                                     <td class="text-center">
                                         <a href="${pageContext.request.contextPath}/ClientesControlador?accion=editar&idCliente=${item.idCliente}"
                                            class="btn btn-warning btn-sm me-1" title="Editar">

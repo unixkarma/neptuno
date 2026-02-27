@@ -137,6 +137,29 @@
                         </div>
                     </div>
 
+                    <!-- Jefe y Acceso -->
+                    <h5 class="section-title">Jefe y Acceso</h5>
+                    <div class="mb-3">
+                        <label for="jefe" class="form-label">
+                            <i class="bi bi-person-badge text-warning me-1"></i>Jefe
+                        </label>
+                        <input name="jefe" type="text" class="form-control" value="${clientes.jefe}">
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="login" class="form-label">
+                                <i class="bi bi-person-lock text-warning me-1"></i>Login
+                            </label>
+                            <input name="login" type="text" class="form-control" value="${clientes.login}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="password" class="form-label">
+                                <i class="bi bi-shield-lock text-warning me-1"></i>Password
+                            </label>
+                            <input name="password" type="password" class="form-control" value="${clientes.password}">
+                        </div>
+                    </div>
+
                     <!-- Buttons -->
                     <div class="d-flex justify-content-between pt-3 border-top">
                         <a href="${pageContext.request.contextPath}/ClientesControlador?accion=listar"

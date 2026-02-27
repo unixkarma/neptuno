@@ -85,6 +85,7 @@ public class EmpleadosControlador extends HttpServlet {
         obj.setExtension(request.getParameter("extension"));
         obj.setEmail(request.getParameter("email"));
         obj.setPassword(request.getParameter("password"));
+        obj.setLogin(request.getParameter("login"));
 
         int result = 0;
         if (obj.getIdEmpleado() == 0) {

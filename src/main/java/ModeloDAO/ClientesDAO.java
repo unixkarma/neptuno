@@ -37,6 +37,9 @@ public class ClientesDAO {
                 obj.setPais(rs.getString("pais"));
                 obj.setTelefono(rs.getString("telefono"));
                 obj.setFax(rs.getString("fax"));
+                obj.setJefe(rs.getString("jefe"));
+                obj.setLogin(rs.getString("login"));
+                obj.setPassword(rs.getString("password"));
                 lista.add(obj);
             }
         } catch (Exception ex) {
@@ -63,7 +66,7 @@ public class ClientesDAO {
         int result = 0;
         try {
             con = Conexion.getConnection();
-            String sql = "insert into clientes values(? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
+            String sql = "insert into clientes values(? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, obj.getIdCliente());
             ps.setString(2, obj.getNombreCompania());
@@ -76,6 +79,9 @@ public class ClientesDAO {
             ps.setString(9, obj.getPais());
             ps.setString(10, obj.getTelefono());
             ps.setString(11, obj.getFax());
+            ps.setString(12, obj.getJefe());
+            ps.setString(13, obj.getLogin());
+            ps.setString(14, obj.getPassword());
             result = ps.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -100,7 +106,7 @@ public class ClientesDAO {
             con = Conexion.getConnection();
             String sql = "update clientes set nombreCompania = ? , nombreContacto = ? , cargoContacto = ?"
                     + " , direccion = ? , ciudad = ? , region = ? , codPostal = ? , pais = ? , telefono = ?"
-                    + " , fax = ? where idCliente = ?";
+                    + " , fax = ? , jefe = ? , login = ? , password = ? where idCliente = ?";
             ps = con.prepareStatement(sql);
             ps.setString(1, obj.getNombreCompania());
             ps.setString(2, obj.getNombreContacto());
@@ -112,7 +118,10 @@ public class ClientesDAO {
             ps.setString(8, obj.getPais());
             ps.setString(9, obj.getTelefono());
             ps.setString(10, obj.getFax());
-            ps.setString(11, obj.getIdCliente());
+            ps.setString(11, obj.getJefe());
+            ps.setString(12, obj.getLogin());
+            ps.setString(13, obj.getPassword());
+            ps.setString(14, obj.getIdCliente());
             result = ps.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -156,6 +165,9 @@ public class ClientesDAO {
                 obj.setPais(rs.getString("pais"));
                 obj.setTelefono(rs.getString("telefono"));
                 obj.setFax(rs.getString("fax"));
+                obj.setJefe(rs.getString("jefe"));
+                obj.setLogin(rs.getString("login"));
+                obj.setPassword(rs.getString("password"));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -199,6 +211,9 @@ public class ClientesDAO {
                 obj.setPais(rs.getString("pais"));
                 obj.setTelefono(rs.getString("telefono"));
                 obj.setFax(rs.getString("fax"));
+                obj.setJefe(rs.getString("jefe"));
+                obj.setLogin(rs.getString("login"));
+                obj.setPassword(rs.getString("password"));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -213,6 +228,46 @@ public class ClientesDAO {
                 if (rs != null) {
                     rs.close();
                 }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return obj;
+    }
+
+    public Clientes buscarPorLogin(String login, String password) {
+        Clientes obj = null;
+        try {
+            con = Conexion.getConnection();
+            String sql = "select * from clientes where login = ? and password = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, login);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                obj = new Clientes();
+                obj.setIdCliente(rs.getString("idCliente"));
+                obj.setNombreCompania(rs.getString("nombreCompania"));
+                obj.setNombreContacto(rs.getString("nombreContacto"));
+                obj.setCargoContacto(rs.getString("cargoContacto"));
+                obj.setDireccion(rs.getString("direccion"));
+                obj.setCiudad(rs.getString("ciudad"));
+                obj.setRegion(rs.getString("region"));
+                obj.setCodPostal(rs.getString("codPostal"));
+                obj.setPais(rs.getString("pais"));
+                obj.setTelefono(rs.getString("telefono"));
+                obj.setFax(rs.getString("fax"));
+                obj.setJefe(rs.getString("jefe"));
+                obj.setLogin(rs.getString("login"));
+                obj.setPassword(rs.getString("password"));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (con != null) { con.close(); }
+                if (ps != null) { ps.close(); }
+                if (rs != null) { rs.close(); }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
